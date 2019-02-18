@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
-import _initialize from './initialize';
+import _useFirebase from './useFirebase';
 
-const initialize = (...args) => _initialize(firebase, ...args);
+const useFirebase = (...args) => _useFirebase(firebase, ...args);
 
 // eslint-disable-next-line import/prefer-default-export
-export { initialize };
+export { useFirebase };
