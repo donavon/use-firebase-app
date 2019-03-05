@@ -1,19 +1,16 @@
 import { useState, useEffect } from 'react';
 
-const findOrCreateApp = (firebase, config, name) => firebase.apps.find(a => a.name === name)
+const getApp = (firebase, name, config) => firebase.apps.find(a => a.name === name)
   || firebase.initializeApp(config, name);
 
-const useFirebase = (firebase, config, name = '[DEFAULT]') => {
-  const [value, setValue] = useState(() => findOrCreateApp(firebase, config, name));
+const useFirebase = (firebase, config, name) => {
+  const [app, setApp] = useState(() => getApp(firebase, name, config));
 
-  useEffect(
-    () => {
-      setValue(() => findOrCreateApp(firebase, config, name));
-    },
-    [firebase, name, config]
-  );
+  useEffect(() => {
+    setApp(() => getApp(firebase, name, config));
+  }, [firebase, name, config]);
 
-  return value;
+  return app;
 };
 
 export default useFirebase;

@@ -22,25 +22,28 @@ $ yarn add @use-firebase/app
 You must first import the package like so.
 
 ```js
-import { useFirebase } from '@use-firebase/app';
+import { FirebaseAppProvider, useFirebaseApp } from '@use-firebase/app';
 ```
 
-### `useFirebase`
+### FirebaseAppProvider
 
-Return a Firebase application instance.
+Return a Firebase application provider. You must wrap your app inside
+of an `<FirebaseAppProvider/>`.
 
-```js
-const app = useFirebase(config, appName);
+```jsx
+<FirebaseAppProvider config={myFirebaseConfig} name="myFirebase">
+  <App />
+</FirebaseAppProvider>
 ```
 
-#### Parameters
+#### Props
 
 Here are the parameters that you can use.
 
 | Parameter | Description                                                                                         |
 | :-------- | :-------------------------------------------------------------------------------------------------- |
 | `config`  | A configuration object. See below for instructions on how to obtain this from the Firebase console. |
-| `appName` | An optional name for your app. Default = `[DEFAULT]`.                                 |
+| `name` | An optional name for your app. Default = `[DEFAULT]`.                                 |
 
 ##### Obtaining `config` information from the Firebase console
 
@@ -62,40 +65,14 @@ var config = {
 };
 ```
 
-#### Return
-
-`useFirebase` returns an `app` instance need to pass to other `@use-firebase` packages
-such as `@use-firebase/auth` and `@use-firebase/database`.
-
-#### Example
+### useFirebaseApp
 
 ```js
-import React from 'react';
-
-import { useFirebase } from '@use-firebase/app';
-import { useAuth } from '@use-firebase/auth';
-
-import AuthenticatedApp from './AuthenticatedApp';
-import SignInScreen from './SignInScreen';
-
-import config from './firebaseConfig';
-
-const App = () => {
-  const app = useFirebase('my-awesome-app', config);
-  const { isSignedIn, user } = useAuth(app);
-
-  return isSignedIn ? (
-    <AuthenticatedApp app={app} user={user} />
-  ) : (
-    <SignInScreen app={app} />
-  );
-};
-
-export default App;
+const app = useFirebaseApp();
 ```
 
-This app will render the sign in screen if the user is not signed in.
-Otherwise it will render the authenticated app.
+`useFirebaseApp` is a custom hook that you can use in your components to
+obtain the `app` object created by `FirebaseAppProvider`.
 
 ## Live demo
 
