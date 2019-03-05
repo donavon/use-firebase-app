@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A custom React Hook that provides a declarative interface for Firebase.",
   "main": "dist/app.js",
   "umd:main": "dist/app.umd.js",
@@ -20,8 +20,8 @@
     "test": "jest --verbose --coverage --silent",
     "test:watch": "jest --watch --runInBand --silent",
     "prebuild": "npm run lint && npm t && rimraf dist",
-    "build": "microbundle -o dist/ --sourcemap false --target web",
-    "dev": "microbundle watch -o dist/ --sourcemap false --compress false"
+    "build": "microbundle -o dist/ --sourcemap false --target web --jsx React.createElement",
+    "dev": "microbundle watch -o dist/ --sourcemap false --compress false --jsx React.createElement"
   },
   "keywords": [
     "react-hooks",
