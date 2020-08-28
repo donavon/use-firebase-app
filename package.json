@@ -62,7 +62,7 @@
     }
   },
   "dependencies": {
-    "firebase": "^5.8.6",
+    "firebase": "^7.19.1",
     "prop-types": "^15.7.2"
   }
 }
