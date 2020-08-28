@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "A custom React Hook that provides a declarative interface for Firebase.",
   "main": "dist/app.js",
   "umd:main": "dist/app.umd.js",
